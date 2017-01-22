@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content=" ">
+    <meta name="keywords" content="">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+<script src="node_modules/vue/dist/vue.min.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.min.js"></script>
+   
+  </head>
+  <body>
+    <div id="box">
+        <div id="footer">
+            <router-link to="/home">主页</router-link>
+            <router-link to="/follow">联系我们</router-link>
+        </div>
+        <div id="view">
+            <router-view></router-view>
+        </div>
+    </div>
+    <script>
+        var Home={
+            template:'<div class="view1">我是主页</div>'
+        };
+        var Follow={
+            template:'<div class="view2">联系我们<router-link to="/usertel">电话</router-link><router-view></router-view></div>'
+        };
+        var Usertel={
+            template:'<p>1274839204</p>'
+        };
+        const routes=[
+            {path:'/home',component:Home},
+            {path:'/follow',component:Follow,children:[{path:'/usertel',component:Usertel}]}
+        ];
+        const router=new VueRouter({
+            routes
+        });
+        new Vue({
+            router,
+            el:'#box'
+        })
+    </script>
+    
+    
+  </body>
+</html>
